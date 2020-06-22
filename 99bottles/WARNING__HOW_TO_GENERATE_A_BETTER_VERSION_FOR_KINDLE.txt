@@ -1,0 +1,27 @@
+The Kindle format is proprietary. Amazon has a tool (kindlegen) for converting
+epubs to the Kindle format, but per their licensing it is illegal for us to use that tool[1] to generate a kindle version that we distribute.  Therefore, we've generated a "pretty good" .mobi file using using the open source tool Calibre[2].
+
+The mobi produced by Calibre is good enough for most folks.  However, if you'd like the best possible kindle version, it's perfectly legal for you to generate your own 99 Bottles mobi file using Amazon's "kindlegen" tool.
+
+There are two options for getting a better .mobi.  You can:
+
+* Upload your 99 Bottles epub to an online service and let them do the conversion, or
+* Convert it yourself using Amazon's official command0-line tool, kindlegen.
+
+== Using an Online Service
+
+Upload the epub to http://www.sendepubtokindle.com, which will email the converted result directly to your kindle.
+
+== Using kindlegen
+
+Install kindlegen from Amazon's website:
+https://www.amazon.com/gp/feature.html?docId=1000765211
+
+Then, depending on which version of 99 Bottles you purchased, run one of the following on the command-line:
+
+    kindlegen 99Bottles.epub
+or
+    kindlegen 99Bottles_milk.epub
+
+[1] http://www.virtuouscode.com/2014/05/13/tldr-amazon-sucks/
+[2] https://calibre-ebook.com/

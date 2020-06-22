@@ -1,0 +1,6 @@
+*.DS_Store
+*.mobi
+*.epub
+*.pdf
+bin/
+.bundle/
