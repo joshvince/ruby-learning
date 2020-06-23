@@ -24,16 +24,18 @@ module Kata02
       middle_index = (array.length / 2.0).floor
       middle_val = array[middle_index]
 
-      if (search_int == middle_val)  
-        (start_pos + middle_index) 
-      elsif (search_int < middle_val)
-        @array = array.slice(0, middle_index)
-        chop
-      elsif (search_int > middle_val)
-        @array = array.slice(middle_index, array.length)
+      case (search_int <=> middle_val)
+      when 0
+        return start_pos + middle_index
+      when 1
+        lower, upper = middle_index, array.length
         @start_pos = (start_pos + middle_index)
-        chop
+      else
+        lower, upper = 0, middle_index
       end
+
+      @array = array.slice(lower, upper)
+      chop
     end
 
     def final_tick

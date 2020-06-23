@@ -2,8 +2,6 @@ require 'kata_02/recursive_chop'
 
 RSpec.describe Kata02::RecursiveChop, '#chop' do
   context 'recursive chop' do
-    # let(:search) { Kata02::RecursiveChop.new }
-    
     it 'returns -1 if the array is empty' do
       search = Kata02::RecursiveChop.new(3, [])
       expect(search.chop).to eq -1
