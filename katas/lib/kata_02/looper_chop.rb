@@ -21,18 +21,16 @@ module Kata02
       working_array = array
       i = 0
       while working_array.length > 0
-        if working_array.length == 1
-          return final_tick(working_array, i)
-        end
-        
+        return final_tick(working_array, i) if (working_array.length == 1)
+
         middle_index = (working_array.length / 2.0).floor
 
-        case (target <=> working_array[middle_index])
-        when 0
+        case 
+        when (target == working_array[middle_index])
           return middle_index + i
-        when -1
+        when (target < working_array[middle_index])
           working_array = working_array.slice(0,middle_index)
-        else
+        when (target > working_array[middle_index])
           working_array = working_array.slice(middle_index, working_array.length)
           i = i + middle_index
         end
