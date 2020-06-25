@@ -54,20 +54,16 @@ module Kata02
         array = [*1..upper_limit]
         bm.report("Recursive Search:") do
           searcher = Kata02::RecursiveChop.new(target, array)
-          5.times do ; searcher.chop ; end
+          1.times do ; searcher.chop ; end
         end
         bm.report("Looper Search:") do
           searcher = Kata02::LooperChop.new
-          5.times do ; searcher.chop(target, array) ; end
+          1.times do ; searcher.chop(target, array) ; end
         end
         bm.report("Functional Search:") do
-          5.times do ; Kata02::FunctionalChop.chop(target, array) ; end
+          1.times do ; Kata02::FunctionalChop.chop(target, array) ; end
         end
       end
-    end
-
-    def rubyway(num, array)
-      # use ruby stdlib methods to achieve the result
     end
 
     def self.linear_search(target, array)
