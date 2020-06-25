@@ -18,7 +18,7 @@ A note first: I've recently read the amazing book [99 bottles of OOP](https://ww
 
 **_Rule 0: Each implementation must follow the "Shameless Green" approach outlined in Chapter 1 of 99 bottles_**
 
-_If you're not aware of the book, this boils down to the **Red/Green/Refactor** concept - the "shameless green" refers to the act of shamelessly writing code that passes a series of tests, refactoring when necessary._
+If you're not aware of the book, this boils down to the **Red/Green/Refactor** concept - the "shameless green" refers to the act of shamelessly writing code that passes a series of tests, refactoring when necessary.
 
 In addition to the Shameless Green constraint, I set specifics for each implementation:
 
@@ -53,6 +53,8 @@ Rules:
 * _Modules only_
 * _Pure functions only, no shared state_
 * _Build on the previous learning without repeating it_
+
+[View the code here](https://github.com/joshvince/ruby-learning/blob/master/katas/lib/kata_02/functional_chop.rb)
 
 #### Thoughts:
 * It doesn't feel like The Ruby Way... 
