@@ -1,8 +1,8 @@
-require 'kata_02/looper_chop'
+require 'dave_thomas/kata_02/looper_chop'
 
-RSpec.describe Kata02::LooperChop, '#chop' do
+RSpec.describe DaveThomas::Kata02::LooperChop, '#chop' do
   context 'looper chop' do
-    let(:searcher) { Kata02::LooperChop.new }
+    let(:searcher) { DaveThomas::Kata02::LooperChop.new }
     it 'returns -1 if the array is empty' do
       expect(searcher.chop(3, [])).to eq -1
     end

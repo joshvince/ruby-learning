@@ -1,7 +1,7 @@
-require 'kata_02/functional_chop'
+require 'dave_thomas/kata_02/functional_chop'
 
-RSpec.describe Kata02::FunctionalChop, '#chop' do
-  include Kata02::FunctionalChop
+RSpec.describe DaveThomas::Kata02::FunctionalChop, '#chop' do
+  include DaveThomas::Kata02::FunctionalChop
   context 'functional chop' do
     it 'returns -1 if the array is empty' do
       expect(chop(3, [])).to eq -1  
