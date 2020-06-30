@@ -1,44 +1,50 @@
 module RoyOsherove
   module Kata01
     class StringCalculator
-      DEFAULT_DELIMETER = /[,]|[\n]/
       attr_accessor :input, :delimiter, :sequence
 
       def add(string)
-        return 0 unless string.length > 0
-        
         @input = string
-        set_delimiter_and_sequence
+        
+        return 0 if input.length == 0
+        
+        configure_delimiter
         integers = sequence.split(delimiter).filter { |i| i != "" }.map { |s| s.to_i }
         valid_integers(integers).sum
       end
       
       private
 
-      def set_delimiter_and_sequence
+      def configure_delimiter
         if input.start_with? "//"
-          multi_char_regex = %r{\[(\S+?)\]}
-          delim_input, seq = input.split(/\n/, 2)
-          
-          @sequence = seq
-
-          case delim_input.match multi_char_regex
-          when nil
-            @delimiter = delim_input.chars[-1]
-          else
-            @delimiter = build_delimiter(delim_input, multi_char_regex)
-          end
+          handle_custom_delimiter
         else
+          # the whole input is the sequence if the input didn't define a custom delimiter
           @sequence = input
           @delimiter = /[,]|[\n]/
         end
       end
 
+      def handle_custom_delimiter
+        delim_config, @sequence = input.split(/\n/, 2)
+
+        multi_char_signature = %r{\[(\S+?)\]}
+
+        case delim_config.match multi_char_signature
+        when nil
+          # the spec says that anything not enclosed in square brackets is valid as a single char delimiter
+          @delimiter = delim_config.chars.last
+        else
+          build_delimiter(delim_config, multi_char_signature)
+        end
+      end
+
       def build_delimiter(input, regex)
-        string = input.scan(regex).flatten
-                 .map { |char| "(" + Regexp.quote(char) + "+?)" }.join("|")
-                 .prepend("\[").concat("\]")
-        Regexp.new(string)
+        inputted_chars = input.scan(regex).flatten
+        capture_groups = inputted_chars.map { |char| "(" + Regexp.quote(char) + "+?)" }
+        regex_string = "\[" + capture_groups.join("|") + "\]"
+        
+        @delimiter = Regexp.new(regex_string)
       end
 
       def valid_integers(integers)
@@ -48,9 +54,7 @@ module RoyOsherove
       end
 
       def raise_negative_number_error(integers)
-        negatives = integers.filter { |n| n.negative? }
-
-        raise "negatives not allowed, received: #{negatives}"
+        raise "negatives not allowed, received: #{integers.filter { |n| n.negative? }}"
       end
     end
   end
