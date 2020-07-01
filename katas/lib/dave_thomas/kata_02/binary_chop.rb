@@ -3,7 +3,7 @@ require 'benchmark'
 require 'recursive_chop'
 require 'looper_chop'
 require 'functional_chop'
-include Kata02::FunctionalChop
+include DaveThomas::Kata02::FunctionalChop
 module DaveThomas
   module Kata02
     module BinaryChop
@@ -52,13 +52,14 @@ module DaveThomas
         Benchmark.bm(20) do |bm|
           target = rand(upper_limit)
           array = [*1..upper_limit]
+          recursive_searcher = Kata02::RecursiveChop.new(target, array)
+          looper_searcher = Kata02::LooperChop.new
+          
           bm.report("Recursive Search:") do
-            searcher = Kata02::RecursiveChop.new(target, array)
-            1.times do ; searcher.chop ; end
+            1.times do ; recursive_searcher.chop ; end
           end
           bm.report("Looper Search:") do
-            searcher = Kata02::LooperChop.new
-            1.times do ; searcher.chop(target, array) ; end
+            1.times do ; looper_searcher.chop(target, array) ; end
           end
           bm.report("Functional Search:") do
             1.times do ; Kata02::FunctionalChop.chop(target, array) ; end
@@ -69,15 +70,15 @@ module DaveThomas
       def self.linear_search(target, array)
         counter = 0
         
-      end
-      while counter < array.length
-        if array[counter] == target
-          return counter
-        else
-          counter += 1
+        while counter < array.length
+          if array[counter] == target
+            return counter
+          else
+            counter += 1
+          end
         end
+        nil
       end
-      return nil
     end
   end
 end
