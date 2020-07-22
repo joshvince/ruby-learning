@@ -12,6 +12,10 @@ module DaveThomas
         def to_float(value)
           Float(value) rescue value
         end
+
+        def to_int(value)
+          Integer(value) rescue value
+        end
       end
     end
   end
