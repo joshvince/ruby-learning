@@ -3,14 +3,16 @@ module DaveThomas
     module Utils
       class FileParser
         include Utils
-        attr_reader :file, :headers, :contents
+        attr_reader :headers, :contents
         def initialize(path:)
           @file = File.new(path)
           parse_and_store_headers
           parse_and_store_contents
         end
 
-        # private
+        private
+
+        attr_reader :file
         
         def parse_and_store_headers
           file.rewind
