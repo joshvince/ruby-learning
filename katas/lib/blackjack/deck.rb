@@ -6,14 +6,15 @@ module BlackJack
     SUITS = [:hearts, :diamonds, :clubs, :spades]
 
     attr_reader :cards
-    def initialize(card_class:, ace_class:)
+
+    def initialize(card_class: BlackJack::BlackJackCard, ace_class: BlackJack::AceCard)
       @card_class = card_class
       @ace_class = ace_class
       @cards = generate_fresh_deck
     end
 
     def shuffle
-      cards.shuffle!
+      @cards = cards.shuffle!
     end
 
     def deal(number_of_cards)
